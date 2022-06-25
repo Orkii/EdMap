@@ -16,15 +16,12 @@ namespace EdMap {
         Point storage;
         GMapOverlay markers;
         GMapOverlay roads;
-        Graph graph;
         bool addMark;
         bool addStorage;
         int choseP = 0;
         Point mouseDownPos;
         public Form1() {
             InitializeComponent();
-
-            graph = new Graph();
             addMark = false;
             addButton.BackColor = Color.Red;
             points = new List<Point>();
@@ -56,7 +53,7 @@ namespace EdMap {
         }
 
         private void getPathButton_Click(object sender, EventArgs e) {
-
+            Graph.calculate(storage, points, 50);
 
         }
 
