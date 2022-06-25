@@ -26,6 +26,7 @@ namespace EdMap {
         private void InitializeComponent() {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.LoadCapacityNUD = new System.Windows.Forms.NumericUpDown();
             this.storageButtonAdd = new System.Windows.Forms.Button();
@@ -35,7 +36,6 @@ namespace EdMap {
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label3 = new System.Windows.Forms.Label();
             this.getPathButton = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).BeginInit();
@@ -93,6 +93,13 @@ namespace EdMap {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(140, 522);
             this.panel1.TabIndex = 1;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(3, 171);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(134, 23);
+            this.progressBar1.TabIndex = 13;
             // 
             // label1
             // 
@@ -183,21 +190,14 @@ namespace EdMap {
             this.getPathButton.UseVisualStyleBackColor = true;
             this.getPathButton.Click += new System.EventHandler(this.getPathButton_Click);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(3, 171);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(134, 23);
-            this.progressBar1.TabIndex = 13;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 152);
+            this.label2.Location = new System.Drawing.Point(3, 152);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 14;
-            this.label2.Text = "label2";
+            this.label2.Text = "label";
             // 
             // Form1
             // 

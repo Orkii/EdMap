@@ -28,6 +28,7 @@ namespace EdMap {
             addButton.BackColor = Color.Red;
             storageButtonAdd.BackColor = Color.Red;
             points = new List<Point>();
+            label2.Text = "";
         }
         private void gMapControl1_Load_1(object sender, EventArgs e) {
             //Буква
@@ -56,10 +57,9 @@ namespace EdMap {
         }
 
         private void getPathButton_Click(object sender, EventArgs e) {
-            Graph.getProgressBar(progressBar1);
+            Graph.connectForm(this);
             Thread thread = new Thread(doAlgorithm);
             thread.Start();
-            Console.WriteLine("prog = " + progressBar1.Value);
         }
         private void doAlgorithm() {
             List<Point> list = Graph.calculate(storage, points, 50);
@@ -70,6 +70,43 @@ namespace EdMap {
                 roads.Routes.Add(new GMapRoute(r));
                 p = list[i];
             }
+        }
+
+        public void setProgressBar(int value)
+        {//Менять текст прогресса из другого потока
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<int>(setProgressBar), new object[] { value });
+                return;
+            }
+            progressBar1.Value = value;
+        }
+        public void setMaxProgressBar(int value)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<int>(setMaxProgressBar), new object[] { value });
+                return;
+            }
+            progressBar1.Maximum = value;
+        }
+        public void incrementProgressBar(int i = 0)
+        {//Менять текст прогресса из другого потока
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<int>(incrementProgressBar), new object[] { i });
+                return;
+            }
+            progressBar1.Increment(1);
+        }
+        public void setTextLabel(string value)
+        {//Менять текст прогресса из другого потока
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string>(setTextLabel), new object[] { value });
+                return;
+            }
+            label2.Text = value;
         }
 
         private void gMapControl1_OnMapClick(PointLatLng pointClick, MouseEventArgs e) {

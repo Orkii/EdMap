@@ -17,12 +17,9 @@ namespace EdMap {
 
         private static int iterationCount = 10000;
 
-        private static ProgressBar progressBar;
-
-        public static void getProgressBar(ProgressBar item) {
-            /*            progressBar = new ProgressBar();
-                        return progressBar;*/
-            progressBar = item;
+        private static Form1 form;
+        public static void connectForm(Form1 item) {
+            form = item;
         }
 
 
@@ -34,40 +31,40 @@ namespace EdMap {
 
             List<int> passedRoad = new List<int>();
 
-            progressBar.Maximum = points.Count * (points.Count - 1)/* + iterationCount*/;
-            progressBar.Value = 0;
-
+            form.setTextLabel("Просчет длин всех дорог: ");
+            form.setMaxProgressBar(count * (count - 1) /* + iterationCount*/);
+            form.setProgressBar(0);
+            int k = 0;
             for (int i = 0; i < count; i++) {
                 for (int j = 0; j < count; j++) {
                     ferCount[i, j] = ferStart;
                 }
             }
-
+            
             for (int i = 0; i < points.Count; i++) {
                 for (int j = 0; j < points.Count; j++) {
                     if (i == j) continue;
                     roadLength[i + 1,j + 1] = OpenStreetMapProvider.Instance.GetRoute(points[i].location, points[j].location, false, false, 15).Distance;
                     reverseLeng[i + 1, j + 1] = 1 / roadLength[i + 1, j + 1];
 
-                    progressBar.Increment(1);
-                    Console.WriteLine("progress bar = " + progressBar.Value);
+                    form.incrementProgressBar(1);
+                    k++;
                 }
             }
             for (int i = 1; i < points.Count + 1; i++) {
                 roadLength[0, i] = OpenStreetMapProvider.Instance.GetRoute(storage.location, points[i - 1].location, false, false, 15).Distance;
+                form.incrementProgressBar(1);
                 roadLength[i, 0] = OpenStreetMapProvider.Instance.GetRoute(points[i - 1].location, storage.location, false, false, 15).Distance;
                 reverseLeng[0, i ] = 1 / roadLength[0, i];
                 reverseLeng[i, 0] = 1 / roadLength[i, 0];
 
-                progressBar.Increment(1);
-                Console.WriteLine("progress bar = " + progressBar.Value);
-
+                form.incrementProgressBar(1);
             }
 
-            progressBar.Value = 0;
-            progressBar.Maximum = iterationCount;
+            form.setTextLabel("Поиск кратчайшего пути: ");
+            form.setMaxProgressBar(iterationCount);
+            form.setProgressBar(0);
 
-            Console.WriteLine("maximum = " + progressBar.Maximum);
             for (int iteration = 0; iteration < iterationCount; iteration++) {
                 //Console.WriteLine("Итерация № " + iteration);
                 passedRoad.Clear();
@@ -123,7 +120,7 @@ namespace EdMap {
                         prevPoint = passedRoad[i];
                     }
                 }
-                progressBar.Increment(1);
+                form.incrementProgressBar(1);
             }
             /////
 
@@ -133,7 +130,7 @@ namespace EdMap {
                 if (a == 0) ret.Add(storage);
                 else ret.Add(points[a - 1]);
             }
-            Thread.Sleep(1000);
+            Thread.Sleep(700);
             return ret;
             
         }
