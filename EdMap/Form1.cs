@@ -85,22 +85,7 @@ namespace EdMap {
                 int i = 0;
                 storage = new Point(mark, mark.ToolTipText, 1);
                 drawMarkers();
-                if (i == 0)
-                {
-                    treeView1.BeginUpdate();
-                    treeView1.Nodes.Add(new TreeNode(mark.ToolTipText));
-                    treeView1.EndUpdate();
-                    drawMarkers();
-                }
-                else
-                {
-                    treeView1.BeginUpdate();
-//                  treeView1.Nodes.Remove();
-                    treeView1.Nodes.Add(new TreeNode(mark.ToolTipText));
-                    treeView1.EndUpdate();
-                    drawMarkers();
-                }
-                i = 1;
+
             }
         }
 
@@ -129,11 +114,18 @@ namespace EdMap {
 
         private void drawMarkers() {
             markers.Clear();
-            if (storage != null) markers.Markers.Add(storage.marker);
+            treeView1.Nodes.Clear();
+            if (storage != null) {
+                markers.Markers.Add(storage.marker);
+                treeView1.Nodes.Add(new TreeNode(storage.name));
+            }
             foreach (Point a in points) {
                 markers.Markers.Add(a.marker);
+                treeView1.Nodes.Add(new TreeNode(a.name));
             }
-           
+
+
+
         }
 
         private void storageButtonAdd_Click(object sender, EventArgs e) {
