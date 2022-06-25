@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace EdMap {
@@ -55,9 +56,16 @@ namespace EdMap {
         }
 
         private void getPathButton_Click(object sender, EventArgs e) {
+            Graph.getProgressBar(progressBar1);
+            Thread thread = new Thread(doAlgorithm);
+            thread.Start();
+            Console.WriteLine("prog = " + progressBar1.Value);
+        }
+        private void doAlgorithm() {
             List<Point> list = Graph.calculate(storage, points, 50);
             Point p = list[0];
-            for (int i = 1; i < list.Count; i++) {
+            for (int i = 1; i < list.Count; i++)
+            {
                 MapRoute r = OpenStreetMapProvider.Instance.GetRoute(p.location, list[i].location, false, false, 15);
                 roads.Routes.Add(new GMapRoute(r));
                 p = list[i];
@@ -65,7 +73,6 @@ namespace EdMap {
         }
 
         private void gMapControl1_OnMapClick(PointLatLng pointClick, MouseEventArgs e) {
-
             if (addMark == true) {
 
                 PointLatLng point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
