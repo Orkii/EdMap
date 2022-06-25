@@ -106,6 +106,7 @@ namespace EdMap {
             foreach (Point a in points) {
                 markers.Markers.Add(a.marker);
             }
+            if (tempMark != null) markers.Markers.Add(tempMark);
         }
 
         private void storageButtonAdd_Click(object sender, EventArgs e) {
@@ -114,14 +115,28 @@ namespace EdMap {
             addButton.BackColor = Color.Red;
         }
 
+        GMapMarker tempMark;
         private void gMapControl1_OnMarkerEnter(GMapMarker item) {
             //Нужно когда наводят на маркер поменять ему цвет
+            Console.WriteLine("IN");
+            //tempMark = new GMarkerGoogle(item.Position, GMarkerGoogleType.blue);//широта, долгота, тип маркера
+            //tempMark.ToolTipText = item.ToolTipText;
             
-            //item.
+            //drawMarkers();
+
         }
 
         private void gMapControl1_OnMarkerLeave(GMapMarker item) {
             //Тут вернуть обратно
+            Console.WriteLine("OUT");
+
+            //item.IsVisible = true;
+            //tempMark.Dispose();
+            //tempMark = null;
+            
+            //drawMarkers();
+
+
         }
     }
 }
