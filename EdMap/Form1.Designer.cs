@@ -33,7 +33,10 @@ namespace EdMap {
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label3 = new System.Windows.Forms.Label();
             this.getPathButton = new System.Windows.Forms.Button();
+            this.LoadCapacityNUD = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -62,7 +65,7 @@ namespace EdMap {
             this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(559, 433);
+            this.gMapControl1.Size = new System.Drawing.Size(631, 523);
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.OnMapClick += new GMap.NET.WindowsForms.MapClick(this.gMapControl1_OnMapClick);
@@ -72,6 +75,8 @@ namespace EdMap {
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.LoadCapacityNUD);
             this.panel1.Controls.Add(this.storageButtonAdd);
             this.panel1.Controls.Add(this.clearButton);
             this.panel1.Controls.Add(this.addButton);
@@ -82,12 +87,12 @@ namespace EdMap {
             this.panel1.Location = new System.Drawing.Point(9, 8);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(140, 432);
+            this.panel1.Size = new System.Drawing.Size(140, 522);
             this.panel1.TabIndex = 1;
             // 
             // storageButtonAdd
             // 
-            this.storageButtonAdd.Location = new System.Drawing.Point(2, 66);
+            this.storageButtonAdd.Location = new System.Drawing.Point(2, 65);
             this.storageButtonAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.storageButtonAdd.Name = "storageButtonAdd";
             this.storageButtonAdd.Size = new System.Drawing.Size(136, 21);
@@ -98,7 +103,7 @@ namespace EdMap {
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(2, 409);
+            this.clearButton.Location = new System.Drawing.Point(2, 498);
             this.clearButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(136, 21);
@@ -130,7 +135,7 @@ namespace EdMap {
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(2, 91);
+            this.treeView1.Location = new System.Drawing.Point(2, 178);
             this.treeView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(137, 315);
@@ -158,11 +163,27 @@ namespace EdMap {
             this.getPathButton.UseVisualStyleBackColor = true;
             this.getPathButton.Click += new System.EventHandler(this.getPathButton_Click);
             // 
+            // LoadCapacityNUD
+            // 
+            this.LoadCapacityNUD.Location = new System.Drawing.Point(5, 110);
+            this.LoadCapacityNUD.Name = "LoadCapacityNUD";
+            this.LoadCapacityNUD.Size = new System.Drawing.Size(132, 20);
+            this.LoadCapacityNUD.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Грузоподъемность:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 448);
+            this.ClientSize = new System.Drawing.Size(792, 538);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gMapControl1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -170,6 +191,7 @@ namespace EdMap {
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,6 +207,8 @@ namespace EdMap {
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button storageButtonAdd;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown LoadCapacityNUD;
     }
 }
 
