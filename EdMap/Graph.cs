@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace EdMap {
     static class Graph {
-        private static double ferAddConst = 0.01;
-        private static double evaporation = 0.00001;
+        private static double ferAddConst = 0.001;
+        private static double evaporation = 0.000001;
         private static double ferStart = 0.5;
 
-        private static int iterationCount = 10000;
+        private static int iterationCount = 100000;
 
         private static Form1 form;
         public static void connectForm(Form1 item) {
