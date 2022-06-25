@@ -1,4 +1,5 @@
 ﻿using GMap.NET;
+using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System;
@@ -53,8 +54,13 @@ namespace EdMap {
         }
 
         private void getPathButton_Click(object sender, EventArgs e) {
-            Graph.calculate(storage, points, 50);
-
+            List<Point> list = Graph.calculate(storage, points, 50);
+            Point p = list[0];
+            for (int i = 1; i < list.Count; i++) {
+                MapRoute r = OpenStreetMapProvider.Instance.GetRoute(p.location, list[i].location, false, false, 15);
+                roads.Routes.Add(new GMapRoute(r));
+                p = list[i];
+            }
         }
 
         private void gMapControl1_OnMapClick(PointLatLng pointClick, MouseEventArgs e) {
@@ -115,17 +121,16 @@ namespace EdMap {
         GMapMarker tempMark;
         private void gMapControl1_OnMarkerEnter(GMapMarker item) {
             //Нужно когда наводят на маркер поменять ему цвет
-            Console.WriteLine("IN");
+            //Console.WriteLine("IN");
             //tempMark = new GMarkerGoogle(item.Position, GMarkerGoogleType.blue);//широта, долгота, тип маркера
             //tempMark.ToolTipText = item.ToolTipText;
-            
-            //drawMarkers();
+            //drawMarkers(); 
 
         }
 
         private void gMapControl1_OnMarkerLeave(GMapMarker item) {
             //Тут вернуть обратно
-            Console.WriteLine("OUT");
+            //Console.WriteLine("OUT");
 
             //item.IsVisible = true;
             //tempMark.Dispose();
