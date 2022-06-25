@@ -25,6 +25,7 @@ namespace EdMap {
             InitializeComponent();
             addMark = false;
             addButton.BackColor = Color.Red;
+            storageButtonAdd.BackColor = Color.Red;
             points = new List<Point>();
         }
         private void gMapControl1_Load_1(object sender, EventArgs e) {
@@ -86,7 +87,10 @@ namespace EdMap {
         private void addButton_Click(object sender, EventArgs e) {
             addMark = !addMark;
             addStorage = false;
-            if (addMark == true) addButton.BackColor = Color.Green;
+            if (addMark == true) {
+                addButton.BackColor = Color.Green;
+                storageButtonAdd.BackColor = Color.Red;
+            }
             else addButton.BackColor = Color.Red;
         }
 
@@ -115,20 +119,27 @@ namespace EdMap {
         private void storageButtonAdd_Click(object sender, EventArgs e) {
             addStorage = !addStorage;
             addMark = false;
-            addButton.BackColor = Color.Red;
+            if (addStorage == true) {
+                storageButtonAdd.BackColor = Color.Green;
+                addButton.BackColor = Color.Red;
+            }
+            else storageButtonAdd.BackColor = Color.Red;
         }
 
-        GMapMarker tempMark;
-        private void gMapControl1_OnMarkerEnter(GMapMarker item) {
+        
+/*        private void gMapControl1_OnMarkerEnter(GMapMarker item) {
             //Нужно когда наводят на маркер поменять ему цвет
+
             //Console.WriteLine("IN");
             //tempMark = new GMarkerGoogle(item.Position, GMarkerGoogleType.blue);//широта, долгота, тип маркера
             //tempMark.ToolTipText = item.ToolTipText;
             //drawMarkers(); 
 
-        }
 
-        private void gMapControl1_OnMarkerLeave(GMapMarker item) {
+
+        }
+*/
+/*        private void gMapControl1_OnMarkerLeave(GMapMarker item) {
             //Тут вернуть обратно
             //Console.WriteLine("OUT");
 
@@ -139,6 +150,6 @@ namespace EdMap {
             //drawMarkers();
 
 
-        }
+        }*/ 
     }
 }
