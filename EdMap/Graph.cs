@@ -12,12 +12,15 @@ namespace EdMap {
     static class Graph {
         private static double ferAddConst = 1;
         private static double evaporation = 0.1;
+        private static double ferStart = 0.5;
+
+        private static int iterationCount = 1;
 
         public static void calculate(Point storage, List<Point> points, float loadСapacity) {
             int count = points.Count + 1;
             double[,] roadLength = new double[count, count];
             bool[] pointPassed = new bool[count];
-            float carWorkload = 0;
+            
 
             double[,] ferCount = new double[count, count];
             double[,] reverseLeng = new double[count, count];
@@ -26,10 +29,13 @@ namespace EdMap {
 
 
 
-            //for (int i = 0; i < count; i++) {
-            //    roadFormStorage[i] = OpenStreetMapProvider.Instance.GetRoute(storage.location, points[i].location, false, false, 15).Distance;
-            //    roadFormStorage[i] = OpenStreetMapProvider.Instance.GetRoute(points[i].location, storage.location, false, false, 15).Distance;
-            //}
+            for (int i = 0; i < count; i++) {
+                for (int j = 0; j < count; j++) {
+                    ferCount[i, j] = ferStart;
+                }
+            }
+
+
             for (int i = 0; i < points.Count; i++) {
                 for (int j = 0; j < points.Count; j++) {
                     if (i == j) continue;
@@ -42,12 +48,29 @@ namespace EdMap {
                 roadLength[i, 0] = OpenStreetMapProvider.Instance.GetRoute(points[i - 1].location, storage.location, false, false, 15).Distance;
                 reverseLeng[0, i ] = 1 / roadLength[0, i];
                 reverseLeng[i, 0] = 1 / roadLength[i, 0];
-
-                Console.WriteLine("Делаю " + i);
             }
 
 
-            //for(int i = 0)
+
+            for (int iteration = 0; iteration < iterationCount; iteration++) {
+
+
+                int nowP = 0;
+                float carWorkload = 0;
+                pointPassed[0] = true;
+                for (int countPointPassed = 0; countPointPassed < count - 1; countPointPassed++) {
+                    double[] roadPercent = new double[count];
+                    for (int i = 0; i < count; i++) {
+                        if (pointPassed[i] == true) continue;
+                        roadPercent[i] = ferCount[nowP, i] * reverseLeng[nowP, i];
+                    }
+
+
+                }
+
+            }
+
+
         }
     }
 }
