@@ -113,7 +113,7 @@ namespace EdMap {
             foreach (Point a in points) {
                 markers.Markers.Add(a.marker);
             }
-            if (tempMark != null) markers.Markers.Add(tempMark);
+           
         }
 
         private void storageButtonAdd_Click(object sender, EventArgs e) {
