@@ -72,15 +72,35 @@ namespace EdMap {
                 GMapMarker mark = new GMarkerGoogle(point, GMarkerGoogleType.red);//широта, долгота, тип маркера
                 mark.ToolTipText = "Точка № " + (points.Count + 1).ToString();
                 points.Add(new Point(mark, mark.ToolTipText, 1));
+                treeView1.BeginUpdate();
+                treeView1.Nodes.Add(new TreeNode(mark.ToolTipText));
 
+                treeView1.EndUpdate();
                 drawMarkers();
             }
             else if (addStorage) {
                 PointLatLng point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
                 GMapMarker mark = new GMarkerGoogle(point, GMarkerGoogleType.green_dot);//широта, долгота, тип маркера
                 mark.ToolTipText = "Склад";
+                int i = 0;
                 storage = new Point(mark, mark.ToolTipText, 1);
                 drawMarkers();
+                if (i == 0)
+                {
+                    treeView1.BeginUpdate();
+                    treeView1.Nodes.Add(new TreeNode(mark.ToolTipText));
+                    treeView1.EndUpdate();
+                    drawMarkers();
+                }
+                else
+                {
+                    treeView1.BeginUpdate();
+//                  treeView1.Nodes.Remove();
+                    treeView1.Nodes.Add(new TreeNode(mark.ToolTipText));
+                    treeView1.EndUpdate();
+                    drawMarkers();
+                }
+                i = 1;
             }
         }
 
