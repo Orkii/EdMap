@@ -38,6 +38,7 @@ namespace EdMap {
             this.label3 = new System.Windows.Forms.Label();
             this.getPathButton = new System.Windows.Forms.Button();
             this.loadPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).BeginInit();
             this.loadPanel.SuspendLayout();
@@ -79,6 +80,7 @@ namespace EdMap {
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.LoadCapacityNUD);
             this.panel1.Controls.Add(this.storageButtonAdd);
@@ -205,6 +207,16 @@ namespace EdMap {
             this.loadPanel.Size = new System.Drawing.Size(210, 70);
             this.loadPanel.TabIndex = 15;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 619);
+            this.label4.MaximumSize = new System.Drawing.Size(200, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 20);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "label4";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -240,6 +252,7 @@ namespace EdMap {
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel loadPanel;
+        private System.Windows.Forms.Label label4;
     }
 }
 

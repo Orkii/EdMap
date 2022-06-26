@@ -3,6 +3,7 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -11,11 +12,16 @@ using System.Windows.Forms;
 
 namespace EdMap {
     static class Graph {
-        private static double ferAddConst = 0.001;
-        private static double evaporation = 0.000001;
-        private static double ferStart = 0.5;
-
+        //private static double ferAddConst = 0.001;
+        //private static double evaporation = 0.000001;
+        //private static double ferStart = 0.5;
+        //private static int iterationCount = 100000;
+        private static double minFer = 1.0;
+        private static double ferAddConst = 1.0;
+        private static double evaporation = 0.001;
+        private static double ferStart = 10;
         private static int iterationCount = 100000;
+        private static double lengSignificance = 0.1;
 
         private static Form1 form;
         public static void connectForm(Form1 item) {
@@ -31,10 +37,11 @@ namespace EdMap {
 
             List<int> passedRoad = new List<int>();
 
+            double totalDistance = 0;
+
             form.setTextLabel("Просчет длин всех дорог: ");
             form.setMaxProgressBar(count * (count - 1) /* + iterationCount*/);
             form.setProgressBar(0);
-            int k = 0;
             for (int i = 0; i < count; i++) {
                 for (int j = 0; j < count; j++) {
                     ferCount[i, j] = ferStart;
@@ -45,20 +52,29 @@ namespace EdMap {
                 for (int j = 0; j < points.Count; j++) {
                     if (i == j) continue;
                     roadLength[i + 1,j + 1] = OpenStreetMapProvider.Instance.GetRoute(points[i].location, points[j].location, false, false, 15).Distance;
-                    reverseLeng[i + 1, j + 1] = 1 / roadLength[i + 1, j + 1];
-
+                    //reverseLeng[i + 1, j + 1] = 1 / roadLength[i + 1, j + 1];
+                    totalDistance += roadLength[i + 1, j + 1];
                     form.incrementProgressBar(1);
-                    k++;
                 }
             }
             for (int i = 1; i < points.Count + 1; i++) {
                 roadLength[0, i] = OpenStreetMapProvider.Instance.GetRoute(storage.location, points[i - 1].location, false, false, 15).Distance;
+                //reverseLeng[0, i] = 1 / roadLength[0, i];
+                totalDistance += roadLength[0, i];
                 form.incrementProgressBar(1);
-                roadLength[i, 0] = OpenStreetMapProvider.Instance.GetRoute(points[i - 1].location, storage.location, false, false, 15).Distance;
-                reverseLeng[0, i ] = 1 / roadLength[0, i];
-                reverseLeng[i, 0] = 1 / roadLength[i, 0];
 
+                roadLength[i, 0] = OpenStreetMapProvider.Instance.GetRoute(points[i - 1].location, storage.location, false, false, 15).Distance;
+                totalDistance += roadLength[i, 0];
+                //reverseLeng[i, 0] = 1 / roadLength[i, 0];
                 form.incrementProgressBar(1);
+            }
+
+            for (int i = 0; i < count; i++) {
+                for (int j = 0; j < count; j++) {
+                    if (i == j) continue;
+                    reverseLeng[i, j] = totalDistance / roadLength[i, j] * lengSignificance;
+
+                }
             }
 
             form.setTextLabel("Поиск кратчайшего пути: ");
@@ -66,7 +82,7 @@ namespace EdMap {
             form.setProgressBar(0);
 
             for (int iteration = 0; iteration < iterationCount; iteration++) {
-                //Console.WriteLine("Итерация № " + iteration);
+                //Debug.WriteLine("Итерация № " + iteration);
                 passedRoad.Clear();
                 int nowP = 0;
                 passedRoad.Add(0);
@@ -110,7 +126,7 @@ namespace EdMap {
                     for (int i = 0; i < count; i++) {
                         for (int j = 0; j < count; j++) {
                             ferCount[i, j] -= evaporation;
-                            if (ferCount[i, j] < 0) ferCount[i, j] = 0;
+                            if (ferCount[i, j] < minFer) ferCount[i, j] = minFer;
                         }
                     }
                 

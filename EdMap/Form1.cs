@@ -64,43 +64,44 @@ namespace EdMap {
         private void doAlgorithm() {
             List<Point> list = Graph.calculate(storage, points, 50);
             Point p = list[0];
-            for (int i = 1; i < list.Count; i++)
-            {
+            setLabel4(p.name + " ");
+            roads.Clear();
+            for (int i = 1; i < list.Count; i++)            {
                 MapRoute r = OpenStreetMapProvider.Instance.GetRoute(p.location, list[i].location, false, false, 15);
                 roads.Routes.Add(new GMapRoute(r));
                 p = list[i];
+                setLabel4(label4.Text + p.name + " ");
             }
         }
-
-        public void setProgressBar(int value)
-        {//Менять текст прогресса из другого потока
-            if (InvokeRequired)
-            {
+        public void setLabel4(string value) {//Менять текст прогресса из другого потока
+            if (InvokeRequired) {
+                this.Invoke(new Action<string>(setLabel4), new object[] { value });
+                return;
+            }
+            label4.Text = value;
+        }
+        public void setProgressBar(int value) {//Менять текст прогресса из другого потока
+            if (InvokeRequired) {
                 this.Invoke(new Action<int>(setProgressBar), new object[] { value });
                 return;
             }
             progressBar1.Value = value;
         }
-        public void setMaxProgressBar(int value)
-        {
-            if (InvokeRequired)
-            {
+        public void setMaxProgressBar(int value) {
+            if (InvokeRequired) {
                 this.Invoke(new Action<int>(setMaxProgressBar), new object[] { value });
                 return;
             }
             progressBar1.Maximum = value;
         }
-        public void incrementProgressBar(int i = 0)
-        {//Менять текст прогресса из другого потока
-            if (InvokeRequired)
-            {
+        public void incrementProgressBar(int i = 0) {//Менять текст прогресса из другого потока
+            if (InvokeRequired) {
                 this.Invoke(new Action<int>(incrementProgressBar), new object[] { i });
                 return;
             }
             progressBar1.Increment(1);
         }
-        public void setTextLabel(string value)
-        {//Менять текст прогресса из другого потока
+        public void setTextLabel(string value) {//Менять текст прогресса из другого потока
             if (InvokeRequired)
             {
                 this.Invoke(new Action<string>(setTextLabel), new object[] { value });
