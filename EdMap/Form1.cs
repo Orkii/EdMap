@@ -29,6 +29,14 @@ namespace EdMap {
             storageButtonAdd.BackColor = Color.Red;
             points = new List<Point>();
             label2.Text = "";
+
+
+                         minFerTextBox.Text =   0.05.ToString();
+                    ferAddConstTextBox.Text =    0.5.ToString();
+                    evaporationTextBox.Text =  0.002.ToString();
+                       ferStartTextBox.Text =     10.ToString();
+                 iterationCountTextBox.Text = 100000.ToString();
+               lengSignificanceTextBox.Text =  0.001.ToString();
         }
         private void gMapControl1_Load_1(object sender, EventArgs e) {
             //Буква
@@ -58,6 +66,7 @@ namespace EdMap {
 
         private void getPathButton_Click(object sender, EventArgs e) {
             Graph.connectForm(this);
+            Graph.connectOverlay(roads);
             Thread thread = new Thread(doAlgorithm);
             thread.Start();
         }
@@ -183,30 +192,39 @@ namespace EdMap {
             else storageButtonAdd.BackColor = Color.Red;
         }
 
-        
-/*        private void gMapControl1_OnMarkerEnter(GMapMarker item) {
-            //Нужно когда наводят на маркер поменять ему цвет
-
-            //Console.WriteLine("IN");
-            //tempMark = new GMarkerGoogle(item.Position, GMarkerGoogleType.blue);//широта, долгота, тип маркера
-            //tempMark.ToolTipText = item.ToolTipText;
-            //drawMarkers(); 
-
-
-
+        private void button1_Click(object sender, EventArgs e) {
+            Graph.minFer            = double.Parse(minFerTextBox.Text);
+            Graph.ferAddConst       = double.Parse(ferAddConstTextBox.Text);
+            Graph.evaporation       = double.Parse(evaporationTextBox.Text);
+            Graph.ferStart          = double.Parse(ferStartTextBox.Text);
+            Graph.iterationCount    = int.Parse(iterationCountTextBox.Text);
+            Graph.lengSignificance  = double.Parse(lengSignificanceTextBox.Text);
         }
-*/
-/*        private void gMapControl1_OnMarkerLeave(GMapMarker item) {
-            //Тут вернуть обратно
-            //Console.WriteLine("OUT");
-
-            //item.IsVisible = true;
-            //tempMark.Dispose();
-            //tempMark = null;
-            
-            //drawMarkers();
 
 
-        }*/ 
+        /*        private void gMapControl1_OnMarkerEnter(GMapMarker item) {
+                    //Нужно когда наводят на маркер поменять ему цвет
+
+                    //Console.WriteLine("IN");
+                    //tempMark = new GMarkerGoogle(item.Position, GMarkerGoogleType.blue);//широта, долгота, тип маркера
+                    //tempMark.ToolTipText = item.ToolTipText;
+                    //drawMarkers(); 
+
+
+
+                }
+        */
+        /*        private void gMapControl1_OnMarkerLeave(GMapMarker item) {
+                    //Тут вернуть обратно
+                    //Console.WriteLine("OUT");
+
+                    //item.IsVisible = true;
+                    //tempMark.Dispose();
+                    //tempMark = null;
+
+                    //drawMarkers();
+
+
+                }*/
     }
 }

@@ -26,8 +26,7 @@ namespace EdMap {
         private void InitializeComponent() {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.LoadCapacityNUD = new System.Windows.Forms.NumericUpDown();
             this.storageButtonAdd = new System.Windows.Forms.Button();
@@ -37,11 +36,27 @@ namespace EdMap {
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label3 = new System.Windows.Forms.Label();
             this.getPathButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.loadPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.minFerTextBox = new System.Windows.Forms.TextBox();
+            this.ferAddConstTextBox = new System.Windows.Forms.TextBox();
+            this.evaporationTextBox = new System.Windows.Forms.TextBox();
+            this.ferStartTextBox = new System.Windows.Forms.TextBox();
+            this.iterationCountTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lengSignificanceTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).BeginInit();
             this.loadPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -80,6 +95,7 @@ namespace EdMap {
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.LoadCapacityNUD);
@@ -95,23 +111,15 @@ namespace EdMap {
             this.panel1.Size = new System.Drawing.Size(210, 933);
             this.panel1.TabIndex = 1;
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "label";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(3, 25);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(202, 35);
-            this.progressBar1.TabIndex = 13;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 619);
+            this.label4.MaximumSize = new System.Drawing.Size(200, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 20);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "label4";
             // 
             // label1
             // 
@@ -197,6 +205,24 @@ namespace EdMap {
             this.getPathButton.UseVisualStyleBackColor = true;
             this.getPathButton.Click += new System.EventHandler(this.getPathButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "label";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(3, 25);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(202, 35);
+            this.progressBar1.TabIndex = 13;
+            // 
             // loadPanel
             // 
             this.loadPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -207,15 +233,132 @@ namespace EdMap {
             this.loadPanel.Size = new System.Drawing.Size(210, 70);
             this.loadPanel.TabIndex = 15;
             // 
-            // label4
+            // panel2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 619);
-            this.label4.MaximumSize = new System.Drawing.Size(200, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 20);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "label4";
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.lengSignificanceTextBox);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.iterationCountTextBox);
+            this.panel2.Controls.Add(this.ferStartTextBox);
+            this.panel2.Controls.Add(this.evaporationTextBox);
+            this.panel2.Controls.Add(this.ferAddConstTextBox);
+            this.panel2.Controls.Add(this.minFerTextBox);
+            this.panel2.Location = new System.Drawing.Point(-1, 680);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(210, 252);
+            this.panel2.TabIndex = 14;
+            // 
+            // minFerTextBox
+            // 
+            this.minFerTextBox.Location = new System.Drawing.Point(3, 4);
+            this.minFerTextBox.Name = "minFerTextBox";
+            this.minFerTextBox.Size = new System.Drawing.Size(100, 26);
+            this.minFerTextBox.TabIndex = 0;
+            // 
+            // ferAddConstTextBox
+            // 
+            this.ferAddConstTextBox.Location = new System.Drawing.Point(3, 36);
+            this.ferAddConstTextBox.Name = "ferAddConstTextBox";
+            this.ferAddConstTextBox.Size = new System.Drawing.Size(100, 26);
+            this.ferAddConstTextBox.TabIndex = 1;
+            // 
+            // evaporationTextBox
+            // 
+            this.evaporationTextBox.Location = new System.Drawing.Point(3, 68);
+            this.evaporationTextBox.Name = "evaporationTextBox";
+            this.evaporationTextBox.Size = new System.Drawing.Size(100, 26);
+            this.evaporationTextBox.TabIndex = 2;
+            // 
+            // ferStartTextBox
+            // 
+            this.ferStartTextBox.Location = new System.Drawing.Point(3, 100);
+            this.ferStartTextBox.Name = "ferStartTextBox";
+            this.ferStartTextBox.Size = new System.Drawing.Size(100, 26);
+            this.ferStartTextBox.TabIndex = 3;
+            // 
+            // iterationCountTextBox
+            // 
+            this.iterationCountTextBox.Location = new System.Drawing.Point(3, 132);
+            this.iterationCountTextBox.Name = "iterationCountTextBox";
+            this.iterationCountTextBox.Size = new System.Drawing.Size(100, 26);
+            this.iterationCountTextBox.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(104, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 20);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "minFer";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(104, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "ferAddConst";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(104, 71);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(92, 20);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "evaporation";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(104, 103);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 20);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "ferStart";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(104, 135);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(109, 20);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "iterationCount";
+            // 
+            // lengSignificanceTextBox
+            // 
+            this.lengSignificanceTextBox.Location = new System.Drawing.Point(3, 164);
+            this.lengSignificanceTextBox.Name = "lengSignificanceTextBox";
+            this.lengSignificanceTextBox.Size = new System.Drawing.Size(100, 26);
+            this.lengSignificanceTextBox.TabIndex = 10;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(104, 167);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 20);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "lengSignificance";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 196);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -232,6 +375,8 @@ namespace EdMap {
             ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).EndInit();
             this.loadPanel.ResumeLayout(false);
             this.loadPanel.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -253,6 +398,20 @@ namespace EdMap {
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel loadPanel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox lengSignificanceTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox iterationCountTextBox;
+        private System.Windows.Forms.TextBox ferStartTextBox;
+        private System.Windows.Forms.TextBox evaporationTextBox;
+        private System.Windows.Forms.TextBox ferAddConstTextBox;
+        private System.Windows.Forms.TextBox minFerTextBox;
+        private System.Windows.Forms.Button button1;
     }
 }
 
