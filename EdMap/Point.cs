@@ -15,7 +15,7 @@ namespace EdMap {
         public bool storage { get; private set; }
 
         private float _weight;
-        public float weight { get { if (storage == true) throw new Exception("У склада смотрят вес"); else return _weight; }}
+        public float weight { get { if (storage == true) throw new Exception("У склада смотрят вес"); else return _weight; } set { if (storage == true) throw new Exception("У склада смотрят вес"); else _weight = value; } }
 
 
         public Point(GMapMarker marker_, string name_, float weight_) {
@@ -29,7 +29,7 @@ namespace EdMap {
             storage = true;
         }
         public override string ToString() {
-            return name;
+            return name + "\n" + "Вес " + _weight;
         }
 
 

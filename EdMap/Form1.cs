@@ -136,12 +136,17 @@ namespace EdMap {
                 PointLatLng point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
                 GMapMarker mark = new GMarkerGoogle(point, GMarkerGoogleType.red);//широта, долгота, тип маркера
                 mark.ToolTipText = "Точка № " + (points.Count + 1).ToString();
-                points.Add(new Point(mark, mark.ToolTipText, 1));
+                Point tmpPoint = new Point(mark, mark.ToolTipText, 1);
+                points.Add(tmpPoint);
                 treeView1.BeginUpdate();
-                treeView1.Nodes.Add(new TreeNode(mark.ToolTipText));
+                TreeNode tmpNode = new TreeNode(mark.ToolTipText);
+                tmpNode.Tag = tmpPoint;
+                treeView1.Nodes.Add(tmpNode);
+                
 
                 treeView1.EndUpdate();
                 drawMarkers();
+                mark.ToolTipText = tmpPoint.ToString();
             }
             else if (addStorage) {
                 PointLatLng point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
@@ -186,7 +191,9 @@ namespace EdMap {
             }
             foreach (Point a in points) {
                 markers.Markers.Add(a.marker);
-                treeView1.Nodes.Add(new TreeNode(a.name));
+                TreeNode tmpNode = new TreeNode(a.name);
+                tmpNode.Tag = a;
+                treeView1.Nodes.Add(tmpNode);
             }
 
 
@@ -211,6 +218,27 @@ namespace EdMap {
             Graph.ferStart          = double.Parse(ferStartTextBox.Text);
             Graph.iterationCount    = int.Parse(iterationCountTextBox.Text);
             Graph.lengSignificance  = double.Parse(lengSignificanceTextBox.Text);
+        }
+
+
+
+        private void setWeightMarker(Point a) {
+
+            Form2 form2 = new Form2(a);
+            form2.Owner = this;
+            form2.Show();
+        }
+        private void gMapControl1_OnMarkerDoubleClick(GMapMarker item, MouseEventArgs e) {
+            foreach (Point a in points)
+                if (a.marker == item) {
+                    setWeightMarker(a);
+                }
+        }
+
+        private void treeView1_MouseDoubleClick(object sender, MouseEventArgs e) {
+            Point tmpPoint = (Point)treeView1.SelectedNode.Tag;
+            if (tmpPoint != null)
+                setWeightMarker(tmpPoint);
         }
 
 
