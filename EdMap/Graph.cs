@@ -50,11 +50,9 @@ namespace EdMap {
 
 
         private static List<Point> p;
-        private static void load(int ind) {
-          
-        }
+        
 
-        public static List<Point> calculate(Point storage, List<Point> points, float loadСapacity) {
+        public static List<Point> calculate(Point storage, List<Point> points, double loadСapacity) {
             p = points;
             int count = points.Count + 1;
             roadLength = new double[count, count];
@@ -64,6 +62,7 @@ namespace EdMap {
             //shortest = new List<int>();
             double shortestD = double.MaxValue;
             totalDistance = 0;
+            double nowEmpty = loadСapacity;
 
             form.setTextLabel("Просчет длин всех дорог: ");
             form.setMaxProgressBar(count * (count - 1) /* + iterationCount*/);
@@ -92,7 +91,7 @@ namespace EdMap {
             }
             for (int i = 1; i < points.Count + 1; i++) {
 
-
+                //YandexMapProvider.Instance.
                 roadLength[0, i] = OpenStreetMapProvider.Instance.GetRoute(storage.location, points[i - 1].location, false, false, 15).Distance;
                 totalDistance += roadLength[0, i];
                 form.incrementProgressBar(1);
@@ -121,18 +120,25 @@ namespace EdMap {
                 passedRoad.Clear();
                 int nowP = 0;
                 passedRoad.Add(0);
-                float carWorkload = 0;
+                //float carWorkload = 0;
+                nowEmpty = loadСapacity;
                 bool[] pointPassed = new bool[count];
                 pointPassed[0] = true;
                 double totalLength = 0;
 
-                for (int countPointPassed = 0; countPointPassed < count - 1; countPointPassed++) {
+                for (int countPointPassed = 0; countPointPassed < count - 1; /*countPointPassed++*/) {
                     double[] roadPercent = new double[count];
 
                     double totalP = 0;
                     for (int i = 0; i < count; i++) {
-                        if (pointPassed[i] == true) continue;
                         if (i == nowP) continue;
+                        if (i == 0) {
+                            roadPercent[i] = ferCount[nowP, i] * reverseLeng[nowP, i];
+                            totalP += roadPercent[i];
+                            continue;
+                        }
+                        if (pointPassed[i] == true) continue;
+                        if (nowEmpty < points[i - 1].weight) continue;
                         roadPercent[i] = ferCount[nowP, i] * reverseLeng[nowP, i];
                         totalP += roadPercent[i];
                     }
@@ -149,12 +155,25 @@ namespace EdMap {
                             break;
                         }
                     }
-                    if (nextP == 0) throw new Exception("Не найдено следующей точки");
-                    pointPassed[nextP] = true;
+                    //if (nextP == 0) throw new Exception("Не найдено следующей точки");
+                    if (nextP != 0) {
+                        countPointPassed++;
+                        pointPassed[nextP] = true;
+                        nowEmpty -= points[nextP - 1].weight;
+                    }
+                    else {
+                        nowEmpty = loadСapacity;
+                    }
+                   
+                    //pointPassed[0] = false;
+
                     totalLength += roadLength[nowP, nextP];
                     passedRoad.Add(nextP);
                     nowP = nextP;
                 }//Прошли точки
+
+
+
                 totalLength += roadLength[nowP, 0];
                 passedRoad.Add(0);
                 {
@@ -180,8 +199,6 @@ namespace EdMap {
                     if (a == 0) list.Add(storage);
                     else list.Add(points[a - 1]);
                 }
-
-
 
                 if (iteration % 1000 == 0) {
 

@@ -45,7 +45,7 @@ namespace EdMap {
 
 
             gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
-
+            //gMapControl1.MapProvider = GMap.NET.MapProviders.YandexMapProvider.Instance;
 
             gMapControl1.MinZoom = 2; //минимальный зум
             gMapControl1.MaxZoom = 16; //максимальный зум
@@ -71,7 +71,8 @@ namespace EdMap {
             thread.Start();
         }
         private void doAlgorithm() {
-            List<Point> list = Graph.calculate(storage, points, 50);
+            if ((double)LoadCapacityNUD.Value <= 0) return;
+            List<Point> list = Graph.calculate(storage, points, (double)LoadCapacityNUD.Value);
             Point p = list[0];
             setLabel4(p.name + " ");
             roads.Clear();

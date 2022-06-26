@@ -86,7 +86,7 @@ namespace EdMap {
             this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(1066, 935);
+            this.gMapControl1.Size = new System.Drawing.Size(1066, 999);
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.OnMapClick += new GMap.NET.WindowsForms.MapClick(this.gMapControl1_OnMapClick);
@@ -110,7 +110,7 @@ namespace EdMap {
             this.panel1.Controls.Add(this.getPathButton);
             this.panel1.Location = new System.Drawing.Point(14, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(210, 933);
+            this.panel1.Size = new System.Drawing.Size(210, 997);
             this.panel1.TabIndex = 1;
             // 
             // label4
@@ -253,7 +253,7 @@ namespace EdMap {
             this.panel2.Controls.Add(this.evaporationTextBox);
             this.panel2.Controls.Add(this.ferAddConstTextBox);
             this.panel2.Controls.Add(this.minFerTextBox);
-            this.panel2.Location = new System.Drawing.Point(-1, 680);
+            this.panel2.Location = new System.Drawing.Point(-1, 746);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(210, 252);
             this.panel2.TabIndex = 14;
@@ -384,7 +384,7 @@ namespace EdMap {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 958);
+            this.ClientSize = new System.Drawing.Size(1308, 1022);
             this.Controls.Add(this.loadPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gMapControl1);
