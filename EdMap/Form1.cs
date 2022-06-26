@@ -30,8 +30,8 @@ namespace EdMap {
             points = new List<Point>();
             label2.Text = "";
 
-
                          minFerTextBox.Text =   0.05.ToString();
+                         maxFerTextBox.Text =    2.0.ToString();
                     ferAddConstTextBox.Text =    0.5.ToString();
                     evaporationTextBox.Text =  0.002.ToString();
                        ferStartTextBox.Text =     10.ToString();
@@ -194,6 +194,7 @@ namespace EdMap {
 
         private void button1_Click(object sender, EventArgs e) {
             Graph.minFer            = double.Parse(minFerTextBox.Text);
+            Graph.maxFer            = double.Parse(maxFerTextBox.Text);
             Graph.ferAddConst       = double.Parse(ferAddConstTextBox.Text);
             Graph.evaporation       = double.Parse(evaporationTextBox.Text);
             Graph.ferStart          = double.Parse(ferStartTextBox.Text);

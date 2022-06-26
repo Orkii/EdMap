@@ -21,6 +21,7 @@ namespace EdMap {
         private static int maxAddThreadLoad = 2;
 
         public static double minFer = 0.05;
+        public static double maxFer = 2.0;
         public static double ferAddConst = 0.5;
         public static double evaporation = 0.002;
         public static double ferStart = 10;
@@ -167,6 +168,7 @@ namespace EdMap {
                     int prevPoint = 0;
                     for (int i = 1; i < passedRoad.Count; i++) {
                         ferCount[prevPoint, passedRoad[i]] += ferAddConst / totalLength * totalDistance;
+                        if (ferCount[prevPoint, passedRoad[i]] > maxFer) ferCount[prevPoint, passedRoad[i]] = maxFer;
                         prevPoint = passedRoad[i];
                     }
                 }

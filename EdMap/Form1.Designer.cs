@@ -53,6 +53,8 @@ namespace EdMap {
             this.lengSignificanceTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.maxFerTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadCapacityNUD)).BeginInit();
             this.loadPanel.SuspendLayout();
@@ -236,6 +238,8 @@ namespace EdMap {
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.maxFerTextBox);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.lengSignificanceTextBox);
@@ -263,28 +267,28 @@ namespace EdMap {
             // 
             // ferAddConstTextBox
             // 
-            this.ferAddConstTextBox.Location = new System.Drawing.Point(3, 36);
+            this.ferAddConstTextBox.Location = new System.Drawing.Point(3, 68);
             this.ferAddConstTextBox.Name = "ferAddConstTextBox";
             this.ferAddConstTextBox.Size = new System.Drawing.Size(100, 26);
             this.ferAddConstTextBox.TabIndex = 1;
             // 
             // evaporationTextBox
             // 
-            this.evaporationTextBox.Location = new System.Drawing.Point(3, 68);
+            this.evaporationTextBox.Location = new System.Drawing.Point(3, 100);
             this.evaporationTextBox.Name = "evaporationTextBox";
             this.evaporationTextBox.Size = new System.Drawing.Size(100, 26);
             this.evaporationTextBox.TabIndex = 2;
             // 
             // ferStartTextBox
             // 
-            this.ferStartTextBox.Location = new System.Drawing.Point(3, 100);
+            this.ferStartTextBox.Location = new System.Drawing.Point(3, 132);
             this.ferStartTextBox.Name = "ferStartTextBox";
             this.ferStartTextBox.Size = new System.Drawing.Size(100, 26);
             this.ferStartTextBox.TabIndex = 3;
             // 
             // iterationCountTextBox
             // 
-            this.iterationCountTextBox.Location = new System.Drawing.Point(3, 132);
+            this.iterationCountTextBox.Location = new System.Drawing.Point(3, 164);
             this.iterationCountTextBox.Name = "iterationCountTextBox";
             this.iterationCountTextBox.Size = new System.Drawing.Size(100, 26);
             this.iterationCountTextBox.TabIndex = 4;
@@ -301,7 +305,7 @@ namespace EdMap {
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(104, 39);
+            this.label6.Location = new System.Drawing.Point(104, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 20);
             this.label6.TabIndex = 6;
@@ -310,7 +314,7 @@ namespace EdMap {
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(104, 71);
+            this.label7.Location = new System.Drawing.Point(104, 103);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 20);
             this.label7.TabIndex = 7;
@@ -319,7 +323,7 @@ namespace EdMap {
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(104, 103);
+            this.label8.Location = new System.Drawing.Point(104, 135);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 20);
             this.label8.TabIndex = 8;
@@ -328,7 +332,7 @@ namespace EdMap {
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(104, 135);
+            this.label9.Location = new System.Drawing.Point(104, 167);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(109, 20);
             this.label9.TabIndex = 9;
@@ -336,7 +340,7 @@ namespace EdMap {
             // 
             // lengSignificanceTextBox
             // 
-            this.lengSignificanceTextBox.Location = new System.Drawing.Point(3, 164);
+            this.lengSignificanceTextBox.Location = new System.Drawing.Point(3, 196);
             this.lengSignificanceTextBox.Name = "lengSignificanceTextBox";
             this.lengSignificanceTextBox.Size = new System.Drawing.Size(100, 26);
             this.lengSignificanceTextBox.TabIndex = 10;
@@ -344,7 +348,7 @@ namespace EdMap {
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(104, 167);
+            this.label10.Location = new System.Drawing.Point(104, 199);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 20);
             this.label10.TabIndex = 11;
@@ -352,13 +356,29 @@ namespace EdMap {
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 196);
+            this.button1.Location = new System.Drawing.Point(3, 228);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(104, 39);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(62, 20);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "maxFer";
+            // 
+            // maxFerTextBox
+            // 
+            this.maxFerTextBox.Location = new System.Drawing.Point(3, 36);
+            this.maxFerTextBox.Name = "maxFerTextBox";
+            this.maxFerTextBox.Size = new System.Drawing.Size(100, 26);
+            this.maxFerTextBox.TabIndex = 13;
             // 
             // Form1
             // 
@@ -412,6 +432,8 @@ namespace EdMap {
         private System.Windows.Forms.TextBox ferAddConstTextBox;
         private System.Windows.Forms.TextBox minFerTextBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox maxFerTextBox;
     }
 }
 
