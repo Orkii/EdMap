@@ -20,12 +20,12 @@ namespace EdMap {
 
         private static int maxAddThreadLoad = 2;
 
-        public static double minFer = 0.05;
-        public static double maxFer = 2.0;
-        public static double ferAddConst = 0.5;
-        public static double evaporation = 0.002;
-        public static double ferStart = 10;
-        public static int    iterationCount = 100000;
+        public static double minFer             = 0.25;
+        public static double maxFer             = 2.5;
+        public static double ferAddConst         = 0.5;
+        public static double evaporation         = 0.002;
+        public static double ferStart        = 10;
+        public static int    iterationCount  = 100000;
         public static double lengSignificance = 0.001;
 
         private static Form1 form;

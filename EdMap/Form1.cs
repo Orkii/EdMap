@@ -30,13 +30,13 @@ namespace EdMap {
             points = new List<Point>();
             label2.Text = "";
 
-                         minFerTextBox.Text =   0.05.ToString();
-                         maxFerTextBox.Text =    2.0.ToString();
-                    ferAddConstTextBox.Text =    0.5.ToString();
-                    evaporationTextBox.Text =  0.002.ToString();
-                       ferStartTextBox.Text =     10.ToString();
-                 iterationCountTextBox.Text = 100000.ToString();
-               lengSignificanceTextBox.Text =  0.001.ToString();
+                         minFerTextBox.Text = Graph.minFer          .ToString();
+                         maxFerTextBox.Text = Graph.maxFer          .ToString();
+                    ferAddConstTextBox.Text = Graph.ferAddConst     .ToString();
+                    evaporationTextBox.Text = Graph.evaporation     .ToString();
+                       ferStartTextBox.Text = Graph.ferStart        .ToString();
+                 iterationCountTextBox.Text = Graph.iterationCount  .ToString();
+               lengSignificanceTextBox.Text = Graph.lengSignificance.ToString();
         }
         private void gMapControl1_Load_1(object sender, EventArgs e) {
             //Буква
