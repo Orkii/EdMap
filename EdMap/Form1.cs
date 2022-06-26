@@ -75,12 +75,22 @@ namespace EdMap {
             Point p = list[0];
             setLabel4(p.name + " ");
             roads.Clear();
+            double leng = 0;
             for (int i = 1; i < list.Count; i++)            {
                 MapRoute r = OpenStreetMapProvider.Instance.GetRoute(p.location, list[i].location, false, false, 15);
                 roads.Routes.Add(new GMapRoute(r));
+                leng += r.Distance;
                 p = list[i];
                 setLabel4(label4.Text + p.name + " ");
             }
+            setdistanceLable(leng.ToString());
+        }
+        public void setdistanceLable(string value) {//Менять текст прогресса из другого потока
+            if (InvokeRequired) {
+                this.Invoke(new Action<string>(setdistanceLable), new object[] { value });
+                return;
+            }
+            distanceLable.Text = value;
         }
         public void setLabel4(string value) {//Менять текст прогресса из другого потока
             if (InvokeRequired) {
